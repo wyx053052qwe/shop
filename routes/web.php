@@ -18,3 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//优惠券
+Route::prefix('coupon')->group(function(){
+    Route::get('/index', 'CouponController@index');
+    Route::get('/couponindex', 'CouponController@couponindex');
+    Route::post('/getcoupon', 'CouponController@getcoupon');
+});
+//个人中心
+Route::prefix('user')->group(function(){
+    Route::get('index','UserController@index');
+});
+
