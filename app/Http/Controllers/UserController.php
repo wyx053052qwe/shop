@@ -16,10 +16,10 @@ class UserController extends Controller
     public function index()
     {
         $u_id=Auth::id();
-        $receInfo=Receive::where(['u_id' => $u_id,'status' => 2])->get()->toArray();
+        $receInfo=Receive::where(['u_id' => $u_id])->get()->toArray();
         foreach($receInfo as $k => $v){
             if(time() > $v['expirex_at']){
-                Receive::update(['status' => 3]);
+                Receive::where('expirex_at','>',time())->update(['status' => 3]);
             }
         }
 

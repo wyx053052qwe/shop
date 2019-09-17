@@ -397,4 +397,6 @@ return [
     'extensions' => [
 
     ],
+    'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
 ];
+
