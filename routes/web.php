@@ -30,4 +30,16 @@ Route::prefix('user')->group(function(){
     Route::get('del','UserController@del');
     Route::get('pay','UserController@pay');
 });
+//分类管理
+Route::prefix('cates')->group(function(){
+    Route::get('/add','CateController@add');
+});
+//商品管理
+Route::prefix('goods')->group(function(){
+    Route::get('/add','GoodsController@add');
+});
+//接口
+Route::prefix('api')->group(function(){
+   Route::get('cate','ApiController@select');
+});
 
