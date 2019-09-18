@@ -32,8 +32,8 @@
     @foreach($data as $d)
         <tr>
             @if($d['status'] == 2)
-                <td>{{$d['c_name']}}</td>
-                <td>前往使用</td>
+                <td id="{{$d['r_id']}}">{{$d['c_name']}}</td>
+                <td><button type="button" class="pay">前往使用</button></td>
             @else
             @endif
 
@@ -48,8 +48,8 @@
     @foreach($data as $d)
         <tr>
             @if($d['status'] == 3)
-                <td>{{$d['c_name']}}</td>
-                <td>删除</td>
+                <td id="{{$d['r_id']}}">{{$d['c_name']}}</td>
+                <td><button type="button" class="del">删除</button></td>
             @else
             @endif
 
@@ -77,6 +77,34 @@
         }
 
 
+    });
+    $('.del').click(function(){
+        var id=$(this).parent().siblings().attr('id');
+       $.ajax({
+           url:'/user/del',
+           data:{id:id},
+           dataType:'json',
+           success:function(res){
+                if(res.code==1){
+                    alert(res.msg);
+                    location.href=res.url;
+                }else{
+                    alert(res.msg);
+                    location.href=res.url;
+                }
+           }
+       });
+    })
+    $('.pay').click(function(){
+        var id=$(this).parent().siblings().attr('id');
+        $.ajax({
+            url:'/user/pay',
+            data:{id:id},
+            dataType:'json',
+            success:function(res){
+
+            }
+        });
     });
 
 </script>

@@ -27,5 +27,7 @@ Route::prefix('coupon')->group(function(){
 //个人中心
 Route::prefix('user')->group(function(){
     Route::get('index','UserController@index');
+    Route::get('del','UserController@del');
+    Route::get('pay','UserController@pay');
 });
 
