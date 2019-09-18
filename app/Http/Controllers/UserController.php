@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $u_id=Auth::id();
-<<<<<<< HEAD
+
         $receInfo=Receive::where('u_id',$u_id)->where('expirex_at' ,'>', time())->get()->toArray();
         foreach($receInfo as $k => $v){
                 DB::table('coupon_receive')->where('expirex_at' ,'>', time())->update(['status' => 3]);
@@ -27,19 +27,12 @@ class UserController extends Controller
     }
     public function del()
     {
-        $id=request('id');
-        $res=Receive::where('r_id',$id)->delete();
-        if($res){
-            return json_encode(['code'=>1,'msg'=>'OK','url'=>'/user/index']);
-        }else{
-            return json_encode(['code'=>0,'msg'=>'NO','url'=>'/user/index']);
-=======
-        $receInfo=Receive::where(['u_id' => $u_id])->get()->toArray();
-        foreach($receInfo as $k => $v){
-            if(time() > $v['expirex_at']){
-                Receive::where('expirex_at','>',time())->update(['status' => 3]);
-            }
->>>>>>> goods
+        $id = request('id');
+        $res = Receive::where('r_id', $id)->delete();
+        if ($res) {
+            return json_encode(['code' => 1, 'msg' => 'OK', 'url' => '/user/index']);
+        } else {
+            return json_encode(['code' => 0, 'msg' => 'NO', 'url' => '/user/index']);
         }
     }
     public function pay()
